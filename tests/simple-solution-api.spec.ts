@@ -4,7 +4,6 @@ import { StatusCodes } from 'http-status-codes'
 import { OrderDto } from './dto/order-dto'
 
 test.describe('Tests for GET/test-orders method', () => {
-
   test('get order with correct id should receive code 200', async ({ request }) => {
     // Build and send a GET request to the server
     const response = await request.get('https://backend.tallinn-learning.ee/test-orders/1')
@@ -37,15 +36,16 @@ test.describe('Tests for GET/test-orders method', () => {
 })
 
 test.describe('Tests for PUT/test-orders method', () => {
-
   test('update order with correct id should receive code 200', async ({ request }) => {
     const requestHeaders: { api_key: string } = {
-      'api_key': '1234567890123456', }
+      api_key: '1234567890123456',
+    }
     const requestBody = OrderDto.createOrderWithRandomData()
     // Build and send a PUT request to the server
-    const response: APIResponse = await request.put('https://backend.tallinn-learning.ee/test-orders/2',
-    { headers:requestHeaders,
-      data: requestBody,})
+    const response: APIResponse = await request.put(
+      'https://backend.tallinn-learning.ee/test-orders/2',
+      { headers: requestHeaders, data: requestBody },
+    )
     // Log the response status, body and headers
     console.log('response body:', await response.json())
     console.log('response headers:', response.headers())
@@ -55,12 +55,14 @@ test.describe('Tests for PUT/test-orders method', () => {
 
   test('update order with incorrect id should receive code 400', async ({ request }) => {
     const requestHeaders: { api_key: string } = {
-      'api_key': '1234567890123456', }
+      api_key: '1234567890123456',
+    }
     const requestBody = OrderDto.createOrderWithRandomData()
     // Build and send a PUT request to the server
-    const response: APIResponse = await request.put('https://backend.tallinn-learning.ee/test-orders/11',
-      { headers:requestHeaders,
-        data: requestBody,})
+    const response: APIResponse = await request.put(
+      'https://backend.tallinn-learning.ee/test-orders/11',
+      { headers: requestHeaders, data: requestBody },
+    )
     // Log the response status, body and headers
     console.log('response body:', await response.json())
     console.log('response headers:', response.headers())
@@ -70,12 +72,14 @@ test.describe('Tests for PUT/test-orders method', () => {
 
   test('update order with symbol id should receive code 400', async ({ request }) => {
     const requestHeaders: { api_key: string } = {
-      'api_key': '1234567890123456', }
+      api_key: '1234567890123456',
+    }
     const requestBody = OrderDto.createOrderWithRandomData()
     // Build and send a PUT request to the server
-    const response: APIResponse = await request.put('https://backend.tallinn-learning.ee/test-orders/abc',
-      { headers:requestHeaders,
-        data: requestBody,})
+    const response: APIResponse = await request.put(
+      'https://backend.tallinn-learning.ee/test-orders/abc',
+      { headers: requestHeaders, data: requestBody },
+    )
     // Log the response status, body and headers
     console.log('response body:', await response.json())
     console.log('response headers:', response.headers())
@@ -85,12 +89,14 @@ test.describe('Tests for PUT/test-orders method', () => {
 
   test('update order with invalid api key should receive code 401', async ({ request }) => {
     const requestHeaders: { api_key: string } = {
-      'api_key': '123', }
+      api_key: '123',
+    }
     const requestBody = OrderDto.createOrderWithRandomData()
     // Build and send a PUT request to the server
-    const response: APIResponse = await request.put('https://backend.tallinn-learning.ee/test-orders/2',
-      { headers:requestHeaders,
-        data: requestBody,})
+    const response: APIResponse = await request.put(
+      'https://backend.tallinn-learning.ee/test-orders/2',
+      { headers: requestHeaders, data: requestBody },
+    )
     // Log the response status, body and headers
     console.log('response headers:', response.headers())
     // Check if the response status is 401
@@ -99,13 +105,15 @@ test.describe('Tests for PUT/test-orders method', () => {
 })
 
 test.describe('Tests for DELETE/test-orders method', () => {
-
   test('delete order with correct id should receive code 204', async ({ request }) => {
     const requestHeaders: { api_key: string } = {
-      'api_key': '1234567890123456', }
+      api_key: '1234567890123456',
+    }
     // Build and send a DELETE request to the server
-    const response: APIResponse = await request.delete('https://backend.tallinn-learning.ee/test-orders/2',
-      { headers:requestHeaders,})
+    const response: APIResponse = await request.delete(
+      'https://backend.tallinn-learning.ee/test-orders/2',
+      { headers: requestHeaders },
+    )
     // Log the response status, body and headers
     console.log('response headers:', response.headers())
     // Check if the response status is 204
@@ -114,10 +122,13 @@ test.describe('Tests for DELETE/test-orders method', () => {
 
   test('delete order with incorrect id should receive code 400', async ({ request }) => {
     const requestHeaders: { api_key: string } = {
-      'api_key': '1234567890123456', }
+      api_key: '1234567890123456',
+    }
     // Build and send a DELETE request to the server
-    const response: APIResponse = await request.delete('https://backend.tallinn-learning.ee/test-orders/11',
-      { headers:requestHeaders, })
+    const response: APIResponse = await request.delete(
+      'https://backend.tallinn-learning.ee/test-orders/11',
+      { headers: requestHeaders },
+    )
     // Log the response status, body and headers
     console.log('response body:', await response.json())
     console.log('response headers:', response.headers())
@@ -127,10 +138,13 @@ test.describe('Tests for DELETE/test-orders method', () => {
 
   test('delete order with symbol id should receive code 400', async ({ request }) => {
     const requestHeaders: { api_key: string } = {
-      'api_key': '1234567890123456', }
+      api_key: '1234567890123456',
+    }
     // Build and send a DELETE request to the server
-    const response: APIResponse = await request.delete('https://backend.tallinn-learning.ee/test-orders/abc',
-      { headers:requestHeaders, })
+    const response: APIResponse = await request.delete(
+      'https://backend.tallinn-learning.ee/test-orders/abc',
+      { headers: requestHeaders },
+    )
     // Log the response status, body and headers
     console.log('response body:', await response.json())
     console.log('response headers:', response.headers())
@@ -140,10 +154,13 @@ test.describe('Tests for DELETE/test-orders method', () => {
 
   test('delete order with invalid api key should receive code 401', async ({ request }) => {
     const requestHeaders: { api_key: string } = {
-      'api_key': '123', }
+      api_key: '123',
+    }
     // Build and send a DELETE request to the server
-    const response: APIResponse = await request.delete('https://backend.tallinn-learning.ee/test-orders/2',
-      { headers:requestHeaders, })
+    const response: APIResponse = await request.delete(
+      'https://backend.tallinn-learning.ee/test-orders/2',
+      { headers: requestHeaders },
+    )
     // Log the response status, body and headers
     console.log('response headers:', response.headers())
     // Check if the response status is 401
@@ -152,7 +169,6 @@ test.describe('Tests for DELETE/test-orders method', () => {
 })
 
 test.describe('Tests for POST/test-orders method', () => {
-
   test('post order with correct data should receive code 201', async ({ request }) => {
     // prepare request body
     const requestBody = OrderDto.createOrderWithRandomData()
