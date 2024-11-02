@@ -20,7 +20,7 @@ test('post order with correct data should receive code 201', async ({ request })
   const response = await request.post('https://backend.tallinn-learning.ee/test-orders', {
     data: requestBody,
   })
-  const responseBody= await response.json()
+  const responseBody = await response.json()
   // Log the response status and body
   console.log('response status:', response.status())
   console.log('response body:', await response.json())
