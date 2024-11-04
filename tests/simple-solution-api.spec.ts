@@ -167,3 +167,21 @@ test.describe('Tests for DELETE/test-orders method', () => {
     expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
   })
 })
+
+test.describe('Tests for POST/test-orders method', () => {
+  test('post order with correct data should receive code 201', async ({ request }) => {
+    // prepare request body
+    const requestBody = OrderDto.createOrderWithRandomData()
+    // Send a POST request to the server
+    const response = await request.post('https://backend.tallinn-learning.ee/test-orders', {
+      data: requestBody,
+    })
+    // Log the response status and body
+    console.log('response status:', response.status())
+    console.log('response body:', await response.json())
+    expect(response.status()).toBe(StatusCodes.OK)
+    const responseBody = await response.json()
+    expect.soft(responseBody.status).toBe('OPEN')
+    expect.soft(responseBody.customerName).toBe('John Doe')
+  })
+})
