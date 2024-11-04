@@ -111,7 +111,8 @@ test.describe('tests for POST/loan-calc/decision', () => {
   })
 
   test('Send call with incorrect debt boundary value, should receive code 400', async ({
-    request, }) => {
+    request,
+  }) => {
     const requestBody = ApplicantDto.createApplicantWithIncorrectDebtValue()
     const response = await request.post(
       'https://backend.tallinn-learning.ee/api/loan-calc/decision',
@@ -124,7 +125,9 @@ test.describe('tests for POST/loan-calc/decision', () => {
     expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
   })
 
-  test('Send call with incorrect age boundary value, should receive code 400', async ({ request, }) => {
+  test('Send call with incorrect age boundary value, should receive code 400', async ({
+    request,
+  }) => {
     const requestBody = ApplicantDto.createApplicantWithAgeBoundaryNegValue()
     const response = await request.post(
       'https://backend.tallinn-learning.ee/api/loan-calc/decision',
