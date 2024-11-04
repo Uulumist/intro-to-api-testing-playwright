@@ -22,71 +22,48 @@ export class ApplicantDto {
     this.loanPeriod = loanPeriod
   }
 
-  static createApplicantWithValidRandomData():ApplicantDto{
+  static createApplicantWithValidRandomData(): ApplicantDto {
     return new ApplicantDto(
-      Math.floor(Math.random() * 100+1),
+      Math.floor(Math.random() * 100 + 1),
       Math.floor(Math.random() * 100),
       Math.floor(Math.random() * (90 - 17 + 1)) + 17,
       true,
-      Math.floor(Math.random() * 100+1),
-      Math.floor(Math.random() * (36 - 3 + 1)) + 3
+      Math.floor(Math.random() * 100 + 1),
+      Math.floor(Math.random() * (36 - 3 + 1)) + 3,
     )
   }
 
-  static createApplicantWithIncomeHighRisk() : ApplicantDto{
-    return new ApplicantDto(
-      1,
-      0,
-      Math.floor(Math.random() * (90 - 17 + 1)) + 17,
-      true,
-      1,
-      3
-    )
+  static createApplicantWithIncomeHighRisk(): ApplicantDto {
+    return new ApplicantDto(1, 0, Math.floor(Math.random() * (90 - 17 + 1)) + 17, true, 1, 3)
   }
 
-  static createApplicantWithDeptMediumRisk() : ApplicantDto{
-    return new ApplicantDto(
-      10,
-      0,
-      Math.floor(Math.random() * (90 - 17 + 1)) + 17,
-      true,
-      1,
-      9
-    )
+  static createApplicantWithDeptMediumRisk(): ApplicantDto {
+    return new ApplicantDto(10, 0, Math.floor(Math.random() * (90 - 17 + 1)) + 17, true, 1, 9)
   }
 
-  static createApplicantWithAgeLowRisk() : ApplicantDto{
-    return new ApplicantDto(
-      100,
-      0,
-      17,
-      true,
-      1,
-      12
-    )
+  static createApplicantWithAgeLowRisk(): ApplicantDto {
+    return new ApplicantDto(100, 0, 17, true, 1, 12)
   }
 
-  static createApplicantWithNegativeIncomeValue():ApplicantDto{
+  static createApplicantWithNegativeIncomeValue(): ApplicantDto {
     return new ApplicantDto(
       -1,
       Math.floor(Math.random() * 100),
       Math.floor(Math.random() * (90 - 17 + 1)) + 17,
       true,
-      Math.floor(Math.random() * 100+1),
-      Math.floor(Math.random() * (36 - 3 + 1)) + 3
+      Math.floor(Math.random() * 100 + 1),
+      Math.floor(Math.random() * (36 - 3 + 1)) + 3,
     )
   }
 
-  static createApplicantWithIncorrectDeptValue():ApplicantDto{
+  static createApplicantWithIncorrectDeptValue(): ApplicantDto {
     return new ApplicantDto(
-      Math.floor(Math.random() * 100+1),
+      Math.floor(Math.random() * 100 + 1),
       -1,
       Math.floor(Math.random() * (90 - 17 + 1)) + 17,
       true,
-      Math.floor(Math.random() * 100+1),
-      Math.floor(Math.random() * (36 - 3 + 1)) + 3
+      Math.floor(Math.random() * 100 + 1),
+      Math.floor(Math.random() * (36 - 3 + 1)) + 3,
     )
   }
 }
-
-
