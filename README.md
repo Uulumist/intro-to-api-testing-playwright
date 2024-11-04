@@ -1,4 +1,5 @@
 Checklist for testing POST/loan-calc/decision
+
 | Scenario | Test data |
 | ------------- | ------------- |
 | **Positive cases  for request body**  |
@@ -18,6 +19,7 @@ Checklist for testing POST/loan-calc/decision
 | Send call with negative income value  | "income": -1,"debt": >-1,"age": 17..90,"employed": true,"loanAmount": >0,"loanPeriod": 3..36 |
 | Send call with incorrect dept boundary value  | "income": >0,"debt": -1,"age": 17..90,"employed": true,"loanAmount": >0,"loanPeriod": 3..36 |
 | Send call with incorrect age boundary value  | "income": >0,"debt": >-1,"age": 16,"employed": true,"loanAmount": >0,"loanPeriod": 3..36 |
+
 Checklist for testing GET, PUT, DELETE /test-orders
 
 | Scenario | Test data |

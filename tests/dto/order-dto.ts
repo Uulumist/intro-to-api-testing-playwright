@@ -27,7 +27,7 @@ export class OrderDto {
     return new OrderDto(
       'OPEN',
       Math.floor(Math.random() * 100),
-      'John Lennon',
+      'John Doe',
       '+123456789',
       'Urgent order',
       Math.floor(Math.random() * 100),
