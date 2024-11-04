@@ -80,7 +80,7 @@ export class ApplicantDto {
   static createApplicantWithIncorrectDeptValue():ApplicantDto{
     return new ApplicantDto(
       Math.floor(Math.random() * 100+1),
-      -3,
+      -1,
       Math.floor(Math.random() * (90 - 17 + 1)) + 17,
       true,
       Math.floor(Math.random() * 100+1),
