@@ -1,6 +1,6 @@
 export class ApplicantDto {
   income: number
-  dept: number
+  debt: number
   age: number
   employed: boolean
   loanAmount: number
@@ -8,14 +8,14 @@ export class ApplicantDto {
 
   private constructor(
     income: number,
-    dept: number,
+    debt: number,
     age: number,
     employed: boolean,
     loanAmount: number,
     loanPeriod: number,
   ) {
     this.income = income
-    this.dept = dept
+    this.debt = debt
     this.age = age
     this.employed = employed
     this.loanAmount = loanAmount

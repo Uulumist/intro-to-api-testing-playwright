@@ -122,28 +122,6 @@ test.describe('tests for POST/loan-calc/decision', () => {
     )
     console.log('request body:', requestBody)
     console.log('response headers:', response.headers())
-    expect(response.status()).toBe(StatusCodes.OK)
-  })
-
-  test('Send call with incorrect dept boundary value, should receive code 200', async ({
-    request,
-  }) => {
-    const requestBody = {
-      income: 73,
-      debt: -1,
-      age: 82,
-      employed: true,
-      loanAmount: 81,
-      loanPeriod: 9,
-    }
-    const response = await request.post(
-      'https://backend.tallinn-learning.ee/api/loan-calc/decision',
-      {
-        data: requestBody,
-      },
-    )
-    console.log('request body:', requestBody)
-    console.log('response headers:', response.headers())
     expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
   })
 })
