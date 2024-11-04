@@ -26,7 +26,7 @@ test.describe('tests for POST/loan-calc/decision', () => {
   test('Send call with income boundary value and loanPeriod: 3, should receive riskLevel: High risk', async ({
     request,
   }) => {
-    const requestBody = ApplicantDto.createApplicantWithIncomeHighRisk()
+    const requestBody = ApplicantDto.createApplicantWithIncomeBoundaryPosValueHighRisk()
     const response = await request.post(
       'https://backend.tallinn-learning.ee/api/loan-calc/decision',
       {
@@ -48,7 +48,7 @@ test.describe('tests for POST/loan-calc/decision', () => {
   test('Send call with dept boundary value and loanPeriod: 9, should receive riskLevel: Medium risk', async ({
     request,
   }) => {
-    const requestBody = ApplicantDto.createApplicantWithDeptMediumRisk()
+    const requestBody = ApplicantDto.createApplicantWithDeptBoundaryPosValueMediumRisk()
     const response = await request.post(
       'https://backend.tallinn-learning.ee/api/loan-calc/decision',
       {
@@ -70,7 +70,7 @@ test.describe('tests for POST/loan-calc/decision', () => {
   test('Send call with age boundary value and loanPeriod: 12, should receive riskLevel: Low risk', async ({
     request,
   }) => {
-    const requestBody = ApplicantDto.createApplicantWithAgeLowRisk()
+    const requestBody = ApplicantDto.createApplicantWithAgeBoundaryPosValueLowRisk()
     const response = await request.post(
       'https://backend.tallinn-learning.ee/api/loan-calc/decision',
       {
@@ -89,7 +89,7 @@ test.describe('tests for POST/loan-calc/decision', () => {
     expect.soft(responseBody.riskDecision).toBeDefined()
   })
 
-  test('Send call without request body should receive 400', async ({ request }) => {
+  test('Send call without request body should receive code 400', async ({ request }) => {
     const response = await request.post(
       'https://backend.tallinn-learning.ee/api/loan-calc/decision',
     )
@@ -110,10 +110,22 @@ test.describe('tests for POST/loan-calc/decision', () => {
     expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
   })
 
-  test('Send call with incorrect dept boundary value, should receive code 400', async ({
-    request,
-  }) => {
-    const requestBody = ApplicantDto.createApplicantWithIncorrectDeptValue()
+  test('Send call with incorrect debt boundary value, should receive code 400', async ({
+    request, }) => {
+    const requestBody = ApplicantDto.createApplicantWithIncorrectDebtValue()
+    const response = await request.post(
+      'https://backend.tallinn-learning.ee/api/loan-calc/decision',
+      {
+        data: requestBody,
+      },
+    )
+    console.log('request body:', requestBody)
+    console.log('response headers:', response.headers())
+    expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
+  })
+
+  test('Send call with incorrect age boundary value, should receive code 400', async ({ request, }) => {
+    const requestBody = ApplicantDto.createApplicantWithAgeBoundaryNegValue()
     const response = await request.post(
       'https://backend.tallinn-learning.ee/api/loan-calc/decision',
       {

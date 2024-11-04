@@ -33,15 +33,15 @@ export class ApplicantDto {
     )
   }
 
-  static createApplicantWithIncomeHighRisk(): ApplicantDto {
+  static createApplicantWithIncomeBoundaryPosValueHighRisk(): ApplicantDto {
     return new ApplicantDto(1, 0, Math.floor(Math.random() * (90 - 17 + 1)) + 17, true, 1, 3)
   }
 
-  static createApplicantWithDeptMediumRisk(): ApplicantDto {
+  static createApplicantWithDeptBoundaryPosValueMediumRisk(): ApplicantDto {
     return new ApplicantDto(10, 0, Math.floor(Math.random() * (90 - 17 + 1)) + 17, true, 1, 9)
   }
 
-  static createApplicantWithAgeLowRisk(): ApplicantDto {
+  static createApplicantWithAgeBoundaryPosValueLowRisk(): ApplicantDto {
     return new ApplicantDto(100, 0, 17, true, 1, 12)
   }
 
@@ -56,11 +56,22 @@ export class ApplicantDto {
     )
   }
 
-  static createApplicantWithIncorrectDeptValue(): ApplicantDto {
+  static createApplicantWithIncorrectDebtValue(): ApplicantDto {
     return new ApplicantDto(
       Math.floor(Math.random() * 100 + 1),
       -1,
       Math.floor(Math.random() * (90 - 17 + 1)) + 17,
+      true,
+      Math.floor(Math.random() * 100 + 1),
+      Math.floor(Math.random() * (36 - 3 + 1)) + 3,
+    )
+  }
+
+  static createApplicantWithAgeBoundaryNegValue(): ApplicantDto {
+    return new ApplicantDto(
+      Math.floor(Math.random() * 100 + 1),
+      Math.floor(Math.random() * 100),
+      0,
       true,
       Math.floor(Math.random() * 100 + 1),
       Math.floor(Math.random() * (36 - 3 + 1)) + 3,
