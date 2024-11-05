@@ -6,7 +6,6 @@ const serviceUrl = 'https://backend.tallinn-learning.ee/'
 const loginPath = 'login/student'
 
 test.describe('Tallinn delivery api tests', () => {
-
   test('login with correct data', async ({ request }) => {
     const requestBody = LoginDto.createLoginWithCorrectData()
     const response = await request.post(`${serviceUrl}${loginPath}`, {
