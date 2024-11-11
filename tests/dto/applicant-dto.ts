@@ -26,7 +26,7 @@ export class ApplicantDto {
     return new ApplicantDto(
       Math.floor(Math.random() * 100 + 1),
       Math.floor(Math.random() * 100),
-      Math.floor(Math.random() * (90 - 17 + 1)) + 17,
+      Math.floor(Math.random() * (89 - 17 + 1)) + 17,
       true,
       Math.floor(Math.random() * 100 + 1),
       Math.floor(Math.random() * (36 - 3 + 1)) + 3,
