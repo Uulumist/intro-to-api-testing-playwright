@@ -3,11 +3,9 @@ import { StatusCodes } from 'http-status-codes'
 import { LoginDto } from './dto/login-dto'
 import { OrderDto } from './dto/order-dto'
 
-
 const serviceURL = 'https://backend.tallinn-learning.ee/'
 const loginPath = 'login/student'
 const orderPath = 'orders'
-
 
 test.describe('Tallinn delivery api tests', () => {
   test('login with correct data', async ({ request }) => {

@@ -59,4 +59,30 @@ export class ApiClient {
 
     return responseBody.id
   }
+
+  async getOrderById(orderId: number): Promise<any> {
+    const response = await this.request.get(`${serviceURL}${orderPath}/${orderId}`, {
+      headers: {
+        Authorization: `Bearer ${this.jwt}`,
+      },
+    })
+    console.log('Order response: ', response)
+    expect(response.status()).toBe(StatusCodes.OK)
+    const responseBody = await response.json()
+    console.log(responseBody)
+    return responseBody
+  }
+
+  async deleteOrderById(orderId: number): Promise<any> {
+    const response = await this.request.delete(`${serviceURL}${orderPath}/${orderId}`, {
+      headers: {
+        Authorization: `Bearer ${this.jwt}`,
+      },
+    })
+    console.log('Order response: ', response)
+    expect(response.status()).toBe(StatusCodes.OK)
+    const responseBody = await response.json()
+    console.log(responseBody)
+    return responseBody
+  }
 }

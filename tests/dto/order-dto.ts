@@ -26,7 +26,7 @@ export class OrderDto {
   static createOrderWithRandomData(): OrderDto {
     return new OrderDto(
       'OPEN',
-      Math.floor(Math.random() * 100),
+      7,
       'John Doe',
       '+123456789',
       'Urgent order',
