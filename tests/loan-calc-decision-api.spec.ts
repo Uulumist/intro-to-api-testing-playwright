@@ -2,19 +2,13 @@ import { expect, test } from '@playwright/test'
 import { ApplicantDto } from './dto/applicant-dto'
 import { StatusCodes } from 'http-status-codes'
 
+const serviceUrl = 'https://backend.tallinn-learning.ee/api/loan-calc/decision'
+
 test.describe('tests for POST/loan-calc/decision', () => {
   test('Send call with all valid data, should receive code 200', async ({ request }) => {
     const requestBody = ApplicantDto.createApplicantWithValidRandomData()
-    const response = await request.post(
-      'https://backend.tallinn-learning.ee/api/loan-calc/decision',
-      {
-        data: requestBody,
-      },
-    )
+    const response = await request.post(serviceUrl, { data: requestBody })
     const responseBody = await response.json()
-    console.log('request body:', requestBody)
-    console.log('response body:', await response.json())
-    console.log('response headers:', response.headers())
     expect(response.status()).toBe(StatusCodes.OK)
     expect.soft(responseBody.riskScore).toBeDefined()
     expect.soft(responseBody.riskLevel).toBeDefined()
@@ -27,16 +21,8 @@ test.describe('tests for POST/loan-calc/decision', () => {
     request,
   }) => {
     const requestBody = ApplicantDto.createApplicantWithIncomeBoundaryPosValueHighRisk()
-    const response = await request.post(
-      'https://backend.tallinn-learning.ee/api/loan-calc/decision',
-      {
-        data: requestBody,
-      },
-    )
+    const response = await request.post(serviceUrl, { data: requestBody })
     const responseBody = await response.json()
-    console.log('request body:', requestBody)
-    console.log('response body:', await response.json())
-    console.log('response headers:', response.headers())
     expect(response.status()).toBe(StatusCodes.OK)
     expect.soft(responseBody.riskScore).toBeDefined()
     expect.soft(responseBody.riskLevel).toBe('High Risk')
@@ -49,16 +35,8 @@ test.describe('tests for POST/loan-calc/decision', () => {
     request,
   }) => {
     const requestBody = ApplicantDto.createApplicantWithDeptBoundaryPosValueMediumRisk()
-    const response = await request.post(
-      'https://backend.tallinn-learning.ee/api/loan-calc/decision',
-      {
-        data: requestBody,
-      },
-    )
+    const response = await request.post(serviceUrl, { data: requestBody })
     const responseBody = await response.json()
-    console.log('request body:', requestBody)
-    console.log('response body:', await response.json())
-    console.log('response headers:', response.headers())
     expect(response.status()).toBe(StatusCodes.OK)
     expect.soft(responseBody.riskScore).toBeDefined()
     expect.soft(responseBody.riskLevel).toBe('Medium Risk')
@@ -71,16 +49,8 @@ test.describe('tests for POST/loan-calc/decision', () => {
     request,
   }) => {
     const requestBody = ApplicantDto.createApplicantWithAgeBoundaryPosValueLowRisk()
-    const response = await request.post(
-      'https://backend.tallinn-learning.ee/api/loan-calc/decision',
-      {
-        data: requestBody,
-      },
-    )
+    const response = await request.post(serviceUrl, { data: requestBody })
     const responseBody = await response.json()
-    console.log('request body:', requestBody)
-    console.log('response body:', await response.json())
-    console.log('response headers:', response.headers())
     expect(response.status()).toBe(StatusCodes.OK)
     expect.soft(responseBody.riskScore).toBeDefined()
     expect.soft(responseBody.riskLevel).toBe('Low Risk')
@@ -90,23 +60,13 @@ test.describe('tests for POST/loan-calc/decision', () => {
   })
 
   test('Send call without request body should receive code 400', async ({ request }) => {
-    const response = await request.post(
-      'https://backend.tallinn-learning.ee/api/loan-calc/decision',
-    )
-    console.log('response headers:', response.headers())
+    const response = await request.post(serviceUrl)
     expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
   })
 
   test('Send call with negative income value, should receive code 400', async ({ request }) => {
     const requestBody = ApplicantDto.createApplicantWithNegativeIncomeValue()
-    const response = await request.post(
-      'https://backend.tallinn-learning.ee/api/loan-calc/decision',
-      {
-        data: requestBody,
-      },
-    )
-    console.log('request body:', requestBody)
-    console.log('response headers:', response.headers())
+    const response = await request.post(serviceUrl, { data: requestBody })
     expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
   })
 
@@ -114,14 +74,7 @@ test.describe('tests for POST/loan-calc/decision', () => {
     request,
   }) => {
     const requestBody = ApplicantDto.createApplicantWithIncorrectDebtValue()
-    const response = await request.post(
-      'https://backend.tallinn-learning.ee/api/loan-calc/decision',
-      {
-        data: requestBody,
-      },
-    )
-    console.log('request body:', requestBody)
-    console.log('response headers:', response.headers())
+    const response = await request.post(serviceUrl, { data: requestBody })
     expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
   })
 
@@ -129,14 +82,7 @@ test.describe('tests for POST/loan-calc/decision', () => {
     request,
   }) => {
     const requestBody = ApplicantDto.createApplicantWithAgeBoundaryNegValue()
-    const response = await request.post(
-      'https://backend.tallinn-learning.ee/api/loan-calc/decision',
-      {
-        data: requestBody,
-      },
-    )
-    console.log('request body:', requestBody)
-    console.log('response headers:', response.headers())
+    const response = await request.post(serviceUrl, { data: requestBody })
     expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
   })
 })
